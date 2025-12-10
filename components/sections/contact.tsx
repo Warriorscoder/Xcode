@@ -42,7 +42,7 @@ export function Contact() {
           ))}
         </div>
       </div>
-      <Card className="space-y-4" id="cta">
+      <Card className="space-y-4">
         <Badge variant="outline" className="text-cyan-100">
           Get involved
         </Badge>

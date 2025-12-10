@@ -1,4 +1,4 @@
-import { type ButtonHTMLAttributes, forwardRef, isValidElement, cloneElement } from "react";
+import { type ButtonHTMLAttributes, forwardRef, isValidElement, cloneElement, type ReactElement } from "react";
 import { cn } from "../utils";
 
 type ButtonVariant = "primary" | "ghost" | "outline";
@@ -21,11 +21,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
   ref
 ) {
   if (asChild && isValidElement(children)) {
-    return cloneElement(children, {
+    const child = children as ReactElement<{ className?: string }>;
+    return cloneElement(child, {
+      ...child.props,
       className: cn(
         "inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-transform duration-150",
         variantClasses[variant],
-        (children as any).props?.className,
+        child.props?.className,
         className
       ),
     });
